@@ -1,0 +1,102 @@
+﻿@model ReportModel
+@{
+    ViewData["Title"] = "Заказы";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<p>
+    <strong>
+        <a asp-area="" asp-controller="Order" asp-action="CreateOrder">Создать заказ</a>
+    </strong>
+</p>
+<hr />
+<h1>Все заказы</h1>
+
+@foreach (var order in ViewBag.Orders)
+{
+    <p><strong>Номер: @order.Id</strong></p>
+    <p>Дата: @order.OrderDate</p>
+    <p>Статус: @order.Status</p>
+    <p>Цена: @order.TotalSum</p>
+    <p><strong>Мебель:</strong></p>
+    <table class="table">
+        <tr>
+            <td>Тип мебели</td>
+            <td>Название модели</td>
+            <td>Цена</td>
+            <td>Количество</td>
+        </tr>
+        @foreach (var position in order.Positions)
+        {
+            <tr>
+                <td>@position.TypeName</td>
+                <td>@position.ModelName</td>
+                <td>@position.Price</td>
+                <td>@position.Count</td>
+            </tr>
+        }
+    </table>
+    if (order.Status != FurnitureFactoryBusinessLogic.Enums.PaymentStatus.Оформлен && ViewBag.Payments != null)
+    {
+        <p>Платежи:</p>
+        <table class="table">
+            <tr>
+                <td>Дата</td>
+                <td>Сумма</td>
+            </tr>
+            @foreach (var payment in ViewBag.Payments)
+            {
+                if (payment.OrderId == order.Id)
+                {
+                    <tr>
+                        <td>@payment.PaymentDate</td>
+                        <td>@payment.PaymentAmount</td>
+                    </tr>
+                }
+            }
+        </table>
+    }
+    <hr />
+    if (order.Status == FurnitureFactoryBusinessLogic.Enums.PaymentStatus.Оплачен)
+    {
+        <p><strong>Полностью оплачено</strong></p>
+        <hr />
+    }
+    else
+    {
+        if (order.Status == FurnitureFactoryBusinessLogic.Enums.PaymentStatus.Оплачен_не_полностью)
+        {
+            <p><strong>К оплате: @order.LeftSum</strong></p>
+            <hr />
+
+        }
+        <p><a href="/Order/Payment/@order.Id">Оплатить</a></p>
+    }
+    <p>
+        <a href="/Order/SendWordReport/@order.Id">Отправить список мебели в формате docx</a>
+    </p>
+    <p>
+        <a href="/Order/SendExcelReport/@order.Id">Отправить список мебели в формате xslx</a>
+    </p>
+}
+<hr />
+@using (Html.BeginForm())
+{
+    <p>
+        <strong>Выберите даты для отчета по заказам и платежам</strong>
+    </p>
+    <p>
+        От: @Html.EditorFor(model => model.From)
+    </p>
+    <p>
+        До: @Html.EditorFor(model => model.To)
+    </p>
+    <p>
+        На почту @Html.EditorFor(model => model.SendMail)
+    </p>
+    <p>
+        <button type="submit">Отправить</button>
+    </p>
+}
+

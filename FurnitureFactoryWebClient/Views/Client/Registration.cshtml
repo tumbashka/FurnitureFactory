@@ -1,0 +1,27 @@
+﻿@model FurnitureFactoryWebClient.Models.ClientRegistrationModel
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+<div class="text-left text-info">
+    <h1>@ViewData["Title"]</h1>
+</div>
+@using (Html.BeginForm("Registration", "Client"))
+{
+<p>
+    Фамилия:<br>
+    @Html.EditorFor(x => x.SecondName)<br>
+    Имя:<br>
+    @Html.EditorFor(x => x.FirstName)<br>
+    Отчество:<br>
+    @Html.EditorFor(x => x.Patronymic)<br>
+    Телефон:<br>
+    @Html.EditorFor(x => x.PhoneNumber)<br>
+    Email: <br>
+    @Html.EditorFor(x => x.Email)<br>
+    Пароль:<br>
+    @Html.EditorFor(x => x.Password)<br>
+</p>
+    @Html.ValidationSummary(true, "", new { @style = "color: red" })
+    <input type="submit" value="Зарегистрироваться" class="btn btn-info btn-sm" />
+}

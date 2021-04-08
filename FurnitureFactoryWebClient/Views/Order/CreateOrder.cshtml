@@ -1,0 +1,36 @@
+﻿@model FurnitureFactoryWebClient.Models.CreateOrderModel
+@using FurnitureFactoryWebClient.Models
+
+@{
+    ViewData["Title"] = "Создание заказа";
+}
+
+    <h1>@ViewData["Title"]</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @style = "color: red"})
+    <p>
+        Мебель:
+    </p>
+    <table class="table">
+        <tr>
+            <td>Тип мебели</td>
+            <td>Название модели</td>
+            <td>Габариты (ШхГхВ, мм)</td>
+            <td>Цена</td>
+            <td>Количество</td>
+        </tr>
+        @foreach (var Furniture in ViewBag.Positions)
+        {
+            <tr>
+                <td>@Furniture.TypeName</td>
+                <td>@Furniture.ModelName</td>
+                <td>@Furniture.Dimensions</td>
+                <td>@Furniture.Price ₽</td>
+                <td><input type="number" name="Model.Positions[@Furniture.Id]" value="0" min="0"/></td>
+            </tr>
+        }
+    </table>
+    <button type="submit">Оформить</button>
+}

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Каталог мебели";
+}
+
+<div class="text-center text-info">
+    <h1>@ViewData["Title"]</h1>
+</div>
+
+<table class="table">
+    <tr>
+        <td>Тип мебели</td>
+        <td>Название модели</td>
+        <td>Габариты (ШхГхВ, мм)</td>
+        <td>Цена</td>
+    </tr>
+    @foreach (var Furniture in ViewBag.Furnitures)
+    {
+        <tr>
+            <td>@Furniture.TypeName</td>
+            <td>@Furniture.ModelName</td>
+            <td>@Furniture.Dimensions</td>
+            <td>@Furniture.Price ₽</td>
+        </tr>
+    }
+</table>

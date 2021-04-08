@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+    <div class="text-left text-info">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+    <p>
+        ФИО: @ViewBag.User.SecondName @ViewBag.User.FirstName @ViewBag.User.Patronymic<br>
+        E-Mail: @ViewBag.User.Email<br>
+        Телефон: @ViewBag.User.PhoneNumber<br>
+        Пароль: @ViewBag.User.Password<br>
+    </p>

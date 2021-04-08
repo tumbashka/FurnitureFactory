@@ -1,0 +1,19 @@
+﻿@model FurnitureFactoryWebClient.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Авторизация";
+}
+    <div class="text-left text-info">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true,"", new { @style = "color: red"})
+    <p>
+        Почта:<br>
+        @Html.EditorFor(x=>x.Email)<br>
+        Пароль:<br>
+        @Html.EditorFor(x=>x.Password)
+    </p>
+    <button class="btn btn-info btn-sm" type="">Войти</button>
+}

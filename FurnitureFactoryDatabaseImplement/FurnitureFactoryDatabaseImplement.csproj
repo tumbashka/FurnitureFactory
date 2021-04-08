@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20210128104545_newMigration.cs" />
+    <Compile Remove="Migrations\20210128104545_newMigration.Designer.cs" />
+    <Compile Remove="Migrations\20210128104953_migr1.cs" />
+    <Compile Remove="Migrations\20210128104953_migr1.Designer.cs" />
+    <Compile Remove="Migrations\20210128105628_migr123.cs" />
+    <Compile Remove="Migrations\20210128105628_migr123.Designer.cs" />
+    <Compile Remove="Migrations\20210128105946_newmigr.cs" />
+    <Compile Remove="Migrations\20210128105946_newmigr.Designer.cs" />
+    <Compile Remove="Migrations\20210128111323_newmigr.cs" />
+    <Compile Remove="Migrations\20210128111323_newmigr.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FurnitureFactoryBusinessLogic\FurnitureFactoryBusinessLogic.csproj" />
+  </ItemGroup>
+
+</Project>
